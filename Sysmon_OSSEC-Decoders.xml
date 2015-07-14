@@ -11,9 +11,10 @@
 -->
 
 <decoder name="Sysmon-EventID#1">
-<parent>windows</parent>
-<type>windows</type>
-<prematch>INFORMATION\(1\)</prematch>
-<regex offset="after_prematch">Image: (\.*) \s*CommandLine: \.* \s*User: (\.*) \s*LogonGuid: \S* \s*LogonId: \S* \s*TerminalSessionId: \S* \s*IntegrityLevel: \.*HashType: \S* \s*Hash: (\S*) \s*ParentProcessGuid: \S* \s*ParentProcessID: \S* \s*ParentImage: (\.*) \s*ParentCommandLine:</regex>
-<order>status,user,url,data</order>
+ <parent>windows</parent>
+ <type>windows</type>
+ <prematch>INFORMATION\(1\)</prematch>
+ <regex offset="after_prematch">Image: (\.*)  \s*CommandLine: \.* \s*User: (\.*) \s*LogonGuid:\.*Hashes: SHA1=(\.*)\s*ParentProcessGuid: \.* \s*ParentProcessID: \.* \s*ParentImage: (\.*)Parent\.*$|</regex>
+ <regex>Image: (\.*)  \s*CommandLine: \.* \s*User: (\.*) \s*LogonGuid:\.*Hash: (\.*)\s*ParentProcessGuid: \.* \s*ParentProcessID: \.* \s*ParentImage: (\.*)Parent\.*$</regex>
+ <order>status,user,url,data</order>
 </decoder>
